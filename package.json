@@ -1,0 +1,33 @@
+{
+  "name": "s3-directory-index",
+  "description": "Generate index file on S3 object addition/deletion/modification",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "dist/*.js"
+  ],
+  "scripts": {
+    "start": "claudia create --name s3-directory-index --region us-east-1 --handler main.handler",
+    "build": "npm run babel_build && npm run prepare_pug",
+    "babel_build": "babel src -d dist --presets es2015",
+    "prepare_pug": "mv src/index.pug dist/index.pug",
+    "test": "claudia test-lambda",
+    "deploy": "claudia update"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.6.4",
+    "lodash": "^4.17.4",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "claudia": "^4"
+  }
+}
